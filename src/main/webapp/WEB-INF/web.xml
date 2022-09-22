@@ -7,20 +7,20 @@
 
    <filter>
        <filter-name>adminCabinetFilter</filter-name>
-       <filter-class>ua.lviv.lgs.AdminFilter</filter-class>
+       <filter-class>ua.lviv.lgs.filter.AdminFilter</filter-class>
    </filter>
   
   <servlet>
   	<display-name>RegistrationServlet</display-name>
   	<servlet-name>RegistrationServlet</servlet-name>
-  	<servlet-class>ua.lviv.lgs.RegistrationServlet</servlet-class>
+  	<servlet-class>ua.lviv.lgs.servlet.RegistrationServlet</servlet-class>
 
   </servlet>
   
   <servlet>
   	<display-name>LoginSevlet</display-name>
   	<servlet-name>LoginSevlet</servlet-name>
-  	<servlet-class>ua.lviv.lgs.LoginSevlet</servlet-class>
+  	<servlet-class>ua.lviv.lgs.servlet.LoginSevlet</servlet-class>
   </servlet>
  
  
