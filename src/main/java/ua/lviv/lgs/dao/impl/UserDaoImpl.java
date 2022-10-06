@@ -5,6 +5,7 @@ import ua.lviv.lgs.dao.UserDao;
 import ua.lviv.lgs.domain.User;
 import ua.lviv.lgs.domain.UserRole;
 import ua.lviv.lgs.service.UserService;
+import ua.lviv.lgs.service.impl.BucketServiceImpl;
 import ua.lviv.lgs.service.impl.UserServiceImpl;
 import ua.lviv.lgs.utils.ConnectionUtils;
 import ua.lviv.lgs.utils.Mapper;
@@ -27,7 +28,7 @@ public class UserDaoImpl implements UserDao {
     private PreparedStatement preparedStatement;
 
 
-//    private static Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
+    private static Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
 
     public UserDaoImpl() throws SQLException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         connection = openConnection();
@@ -39,7 +40,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement = connection.prepareStatement(READ_ALL);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-//            LOGGER.error(e);
+            LOGGER.error(e);
         }
     }
 
@@ -55,7 +56,7 @@ public class UserDaoImpl implements UserDao {
             rs.next();
             user = new User(rs.getString("name"), rs.getString("last_name"), rs.getString("email"), rs.getString("password"), rs.getString("role"));
         } catch (SQLException e) {
-//            LOGGER.error(e);
+           LOGGER.error(e);
         }
 
         return user;
@@ -76,7 +77,7 @@ public class UserDaoImpl implements UserDao {
             rs.next();
             user.setId(rs.getInt(1));
         } catch (SQLException e) {
-            System.out.println(e.toString() + 123);
+            LOGGER.error(e);
         }
 
         return user;
@@ -92,7 +93,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-//            LOGGER.error(e);
+           LOGGER.error(e);
         }
         return null;
     }
@@ -104,7 +105,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setInt(1, user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-//            LOGGER.error(e);
+            LOGGER.error(e);
         }
     }
 
@@ -125,7 +126,7 @@ public class UserDaoImpl implements UserDao {
             user = new User(userId, name, lastName, email, password, role);
         } catch (SQLException e) {
             System.out.println(e.toString());
-//            LOGGER.error(e);
+            LOGGER.error(e);
         }
         return user;
     }
