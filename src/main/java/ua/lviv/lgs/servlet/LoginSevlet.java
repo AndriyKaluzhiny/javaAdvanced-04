@@ -2,6 +2,7 @@ package ua.lviv.lgs.servlet;
 
 import ua.lviv.lgs.domain.User;
 import ua.lviv.lgs.service.UserService;
+import ua.lviv.lgs.service.impl.UserServiceImpl;
 
 import java.io.IOException;
 
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpSession;
 public class LoginSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private UserService userService = UserService.getUserService();
+	private UserService userService = UserServiceImpl.getUserService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -27,20 +28,14 @@ public class LoginSevlet extends HttpServlet {
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		User user = userService.readByEmail(email);
 
-		User user = userService.getUser(email);
-		
-		if (email.equals("admin") && password.equals("admin")) {
-			request.getRequestDispatcher("adminCabinet.jsp").forward(request, response);
-		} else if (user.getPassword().equals(password)) {
-			HttpSession session = request.getSession(true);
-			session.setAttribute("email", email);
+		if (user != null && user.getPassword().equals(password)) {
+			request.setAttribute("email", user.getEmail());
 			request.getRequestDispatcher("cabinet.jsp").forward(request, response);
-		} else if (!user.getPassword().equals(password)) {
-			request.getRequestDispatcher("/loginPage.jsp").forward(request,response);
+		} else {
+			request.getRequestDispatcher("loginPage.jsp").forward(request, response);
 		}
-
-
 	}
 
 }

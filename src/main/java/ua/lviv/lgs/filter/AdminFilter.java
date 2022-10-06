@@ -19,7 +19,7 @@ public class AdminFilter implements Filter {
 	private UserService userService;
 
 	public AdminFilter() {
-		userService = UserService.getUserService();
+
 	}
 
 	@Override
@@ -31,11 +31,11 @@ public class AdminFilter implements Filter {
 		if (session != null) {
 			String email = (String) session.getAttribute("email");
 
-			if (email != null && userService.getUser(email).getEmail().equals("admin")) {
+			if (email != null && userService.readByEmail(email).getEmail().equals("admin")) {
 				chain.doFilter(request, response);
 				return;
 			}
-		} 
+		}
 			HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 			httpServletResponse.sendRedirect("loginPage.jsp");
 	}

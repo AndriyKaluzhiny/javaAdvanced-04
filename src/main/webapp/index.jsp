@@ -5,7 +5,7 @@
 	<form action="registration" method="post">
 		<label for="username">Name</label><input name="username">
 			<br>
-		<label for="lastName">last name</label><input name="lastMame">
+		<label for="lastName">last name</label><input name="lastName">
 			<br>
 		<label for="email">email</label><input name="email">
 			<br>

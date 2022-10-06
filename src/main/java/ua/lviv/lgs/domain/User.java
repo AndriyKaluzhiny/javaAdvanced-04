@@ -6,9 +6,25 @@ public class User {
 	private String lastName;
 	private String email;
 	private String password;
+	private String role;
 	
-	 public User(String name, String lastName, String email, String password) {
+	 public User(String name, String lastName, String email, String password, String role) {
+		this.name = name;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+	}
+	public User(Integer id, String name, String lastName, String email, String password, String role) {
+		 this.id = id;
+		this.name = name;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+	}
 
+	public User(String name, String lastName, String email, String password) {
 		this.name = name;
 		this.lastName = lastName;
 		this.email = email;
@@ -54,4 +70,26 @@ public class User {
 	public Integer getId() {
 		return id;
 	}
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    @Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", role='" + role + '\'' +
+				'}';
+	}
+
+
 }
